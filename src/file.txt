@@ -1,0 +1,36 @@
+import {createStore} from 'redux';
+
+//stor = data =state global
+//action= se que je veut faire juste le non(increment ;decrement...)
+ const increment=()=>
+{return {
+  type:'INCREMENT'
+}}
+const decrement=()=>
+{return {
+  type:'DECREMENT'
+}}
+
+
+//reducer (state,action)... cree le store ...switch
+
+const counter=(state=0 ,action)=>{
+switch (action.type)
+ {
+  case "INCREMENT": return state+1 ;
+  case "DECREMENT":return state-1;
+  default: return state
+   
+}
+}
+
+ //let store=createStore(reducer)
+
+ let store=createStore(counter);
+
+ //display it on the consol
+
+store.subscribe(()=>{ console.log(store.getState()) });
+//dispatch un action(nom de laction)
+store.dispatch(increment())
+store.dispatch(decrement())
